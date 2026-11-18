@@ -1,0 +1,15 @@
+---
+description: Add a account record
+---
+
+# Add a account record
+
+Read CLAUDE.md. Confirm the record and evidence from the operator brief before writing. Use the operator name with --actor.
+
+```bash
+npm run telecom -- add-account --code="<code>" --name="<name>" --carrier="<carrier>" --currency="<currency>" --actor="<operator name>"
+```
+
+Replace angle-bracket values with the supplied facts. Examples use fictional data and dates. Use --json for exact records; money is integer cents and every amount retains its currency. List ambiguous matches and ask which one. 
+
+Present the result in plain language. Drafts stay in drafts/. Never send, pay, provision or disconnect a carrier service.

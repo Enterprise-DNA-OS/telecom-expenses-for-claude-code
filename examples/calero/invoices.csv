@@ -1,0 +1,2 @@
+code,name,account,issued_on,period_start,period_end,due_on,total_cents,tax_year_end,retain_until,evidence
+IMP-INV,Example Bill,IMP-ACCOUNT,2026-11-01,2026-10-01,2026-10-31,2026-11-20,10000,2027-03-31,2034-03-31,fixture://invoice

@@ -1,13 +1,50 @@
 [
   {
     "name": "week",
-    "title": "This week",
-    "subtitle": "Telecom Expenses for Claude Code: what needs attention, rendered by npm run view",
+    "title": "Weekly carrier expense review",
+    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
     "sections": [
       {
-        "title": "Needs attention",
-        "note": "TODO(author): point this at the industry's attention view (overdue, stuck, quiet).",
-        "sql": "select 'replace me' as item, 'TODO(author)' as why"
+        "title": "bill audit",
+        "sql": "select charge,invoice,service,issue,currency,amount_cents from v_bill_audit where issue is not null order by charge"
+      },
+      {
+        "title": "credit chase",
+        "sql": "select dispute,name,currency,requested_cents,received_cents,remaining_cents,follow_up_on from v_credit_chase where status in ('open','submitted','accepted') and remaining_cents>0 order by follow_up_on,dispute"
+      },
+      {
+        "title": "renewals due",
+        "sql": "select service,name,decision_on,renewal_on,currency,monthly_cents from v_renewals where decision_on<=current_date+60 order by decision_on,service"
+      }
+    ]
+  },
+  {
+    "name": "allocations",
+    "title": "Cost allocation review",
+    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
+    "sections": [
+      {
+        "title": "allocation review",
+        "sql": "select charge,invoice,currency,amount_cents,allocated_cents,remaining_cents from v_allocations where remaining_cents<>0 order by charge"
+      },
+      {
+        "title": "cost centres",
+        "sql": "select * from v_cost_centres order by centre,currency"
+      }
+    ]
+  },
+  {
+    "name": "records",
+    "title": "Record checks",
+    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
+    "sections": [
+      {
+        "title": "invoices",
+        "sql": "select * from v_invoice_review order by due_on,invoice"
+      },
+      {
+        "title": "compliance",
+        "sql": "select record,rule,issue from v_compliance order by rule,record"
       }
     ]
   }

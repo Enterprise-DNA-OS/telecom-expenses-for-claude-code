@@ -1,0 +1,2 @@
+code,name,invoice,service,kind,amount_cents
+IMP-CH,Monthly charge,IMP-INV,IMP-LINE,recurring,10000

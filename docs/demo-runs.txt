@@ -1,0 +1,16 @@
+npm run telecom -- bill-audit
+  charge  invoice   service    issue                    currency  amount cents
+  ------  --------  ---------  -----------------------  --------  ------------
+  CH-001  DEMO-NOV  AKL-FIBRE  above monthly reference  NZD       35000       
+  CH-002  DEMO-NOV  WLG-OLD    billed after cessation   NZD       20000       
+  CH-003  DEMO-NOV             unknown service          NZD       10000
+
+npm run telecom -- credit-chase
+  dispute  name                   currency  requested cents  received cents  remaining cents  follow up on
+  -------  ---------------------  --------  ---------------  --------------  ---------------  ------------
+  DSP-001  Ceased service credit  NZD       20000            5000            15000            2026-11-13
+
+npm run telecom -- renewals-due
+  service    name            decision on  renewal on  currency  monthly cents
+  ---------  --------------  -----------  ----------  --------  -------------
+  AKL-FIBRE  Auckland fibre  2026-11-08   2026-12-08  NZD       30000

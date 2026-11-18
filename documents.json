@@ -1,11 +1,62 @@
 [
   {
-    "name": "example",
-    "title": "TODO(author): the first document this industry must produce",
-    "for_each": "select gen_random_uuid() as id, 'Example' as name",
-    "file": "name",
+    "name": "invoice-review",
+    "title": "Carrier invoice review",
+    "for_each": "select id,code from invoices",
+    "file": "code",
     "sections": [
-      { "title": "Details", "sql": "select 'replace me' as item, $1::text as record_id" }
+      {
+        "title": "Invoice",
+        "layout": "record",
+        "sql": "select * from v_invoice_review where id=$1"
+      },
+      {
+        "title": "Charge audit",
+        "sql": "select v.* from v_bill_audit v join charges c on c.id=v.id where c.invoice_id=$1"
+      },
+      {
+        "title": "Allocations",
+        "sql": "select v.* from v_allocations v join charges c on c.id=v.id where c.invoice_id=$1"
+      }
+    ]
+  },
+  {
+    "name": "dispute-letter",
+    "title": "Draft carrier dispute letter",
+    "for_each": "select id,code from disputes where status in ('open','submitted','accepted')",
+    "file": "code",
+    "sections": [
+      {
+        "title": "For operator review before sending",
+        "layout": "record",
+        "sql": "select * from v_credit_chase where id=$1"
+      },
+      {
+        "title": "Reason and evidence",
+        "layout": "record",
+        "sql": "select reason,evidence,follow_up_on from disputes where id=$1"
+      },
+      {
+        "title": "Credits received",
+        "sql": "select code,amount_cents,received_on,evidence from credits where dispute_id=$1"
+      }
+    ]
+  },
+  {
+    "name": "renewal-brief",
+    "title": "Carrier renewal decision brief",
+    "for_each": "select id,code from services where status='active'",
+    "file": "code",
+    "sections": [
+      {
+        "title": "Decision date and monthly reference",
+        "layout": "record",
+        "sql": "select * from v_renewals where id=$1"
+      },
+      {
+        "title": "Recent billed charges",
+        "sql": "select c.code,c.name,c.amount_cents,i.code as invoice,i.period_start,i.period_end from charges c join invoices i on i.id=c.invoice_id where c.service_id=$1 order by i.period_end desc"
+      }
     ]
   }
 ]
