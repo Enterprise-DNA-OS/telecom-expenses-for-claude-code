@@ -8,15 +8,39 @@
       {
         "title": "Invoice",
         "layout": "record",
-        "sql": "select * from v_invoice_review where id=$1"
+        "sql": "select * from v_invoice_review where id=$1",
+        "columns": [
+          "invoice",
+          "currency",
+          "total_cents",
+          "loaded_cents",
+          "due_on",
+          "status",
+          "evidence"
+        ]
       },
       {
         "title": "Charge audit",
-        "sql": "select v.* from v_bill_audit v join charges c on c.id=v.id where c.invoice_id=$1"
+        "sql": "select v.* from v_bill_audit v join charges c on c.id=v.id where c.invoice_id=$1",
+        "columns": [
+          "charge",
+          "name",
+          "service",
+          "currency",
+          "amount_cents",
+          "issue"
+        ]
       },
       {
         "title": "Allocations",
-        "sql": "select v.* from v_allocations v join charges c on c.id=v.id where c.invoice_id=$1"
+        "sql": "select v.* from v_allocations v join charges c on c.id=v.id where c.invoice_id=$1",
+        "columns": [
+          "charge",
+          "currency",
+          "amount_cents",
+          "allocated_cents",
+          "remaining_cents"
+        ]
       }
     ]
   },
@@ -29,7 +53,18 @@
       {
         "title": "For operator review before sending",
         "layout": "record",
-        "sql": "select * from v_credit_chase where id=$1"
+        "sql": "select * from v_credit_chase where id=$1",
+        "columns": [
+          "dispute",
+          "name",
+          "charge",
+          "currency",
+          "requested_cents",
+          "received_cents",
+          "remaining_cents",
+          "status",
+          "follow_up_on"
+        ]
       },
       {
         "title": "Reason and evidence",
@@ -51,7 +86,16 @@
       {
         "title": "Decision date and monthly reference",
         "layout": "record",
-        "sql": "select * from v_renewals where id=$1"
+        "sql": "select * from v_renewals where id=$1",
+        "columns": [
+          "service",
+          "name",
+          "location",
+          "currency",
+          "monthly_cents",
+          "decision_on",
+          "renewal_on"
+        ]
       },
       {
         "title": "Recent billed charges",

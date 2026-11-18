@@ -2,7 +2,7 @@
   {
     "name": "week",
     "title": "Weekly carrier expense review",
-    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
+    "subtitle": "Review copy. Amounts retain their account currency.",
     "sections": [
       {
         "title": "bill audit",
@@ -21,7 +21,7 @@
   {
     "name": "allocations",
     "title": "Cost allocation review",
-    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
+    "subtitle": "Review copy. Amounts retain their account currency.",
     "sections": [
       {
         "title": "allocation review",
@@ -36,7 +36,7 @@
   {
     "name": "records",
     "title": "Record checks",
-    "subtitle": "Fictional demo data until replaced with your approved exports. Amounts are integer cents, grouped by currency.",
+    "subtitle": "Review copy. Amounts retain their account currency.",
     "sections": [
       {
         "title": "invoices",
